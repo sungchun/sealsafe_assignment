@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets
+from .models import CityWeather
+from django.http import JsonResponse
 
-from tutorial.quickstart.serializers import GroupSerializer, UserSerializer
+from api.quickstart.serializers import GroupSerializer, UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -22,3 +24,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 # Create your views here.
+
+def get_city_weather(request):
+    city_weather_data = CityWeather.objects.all().values()
+    return  JsonResponse(list(city_weather_data), safe=False)
