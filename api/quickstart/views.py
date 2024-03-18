@@ -15,3 +15,10 @@ class CityWeatherView(APIView):
         serialized_data = CityWeatherSerializer(city_weather_data, many=True)
         print("serialized",serialized_data.data)
         return JsonResponse(serialized_data.data, status=status.HTTP_200_OK, safe=False)
+
+class SpecificCityWeatherView(APIView):
+
+    def get(self, reqest, name):
+        weather_data = CityWeather.objects.filter(city_name__icontains=name)
+        serialized_data = CityWeatherSerializer(weather_data, many=True)
+        return JsonResponse(serialized_data.data, status=status.HTTP_200_OK, safe=False)
