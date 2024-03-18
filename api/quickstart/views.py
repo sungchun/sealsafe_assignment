@@ -4,7 +4,7 @@ from rest_framework import permissions, viewsets
 from .models import CityWeather
 from django.http import JsonResponse
 
-from api.quickstart.serializers import GroupSerializer, UserSerializer
+from .serializers import GroupSerializer, UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
