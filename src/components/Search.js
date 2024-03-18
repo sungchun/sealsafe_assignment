@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios"
 
-function Search() {
+function Search({weatherData, setWeatherData}) {
     const [input, setInput] = useState('')
 
         function handleChange(event) {
@@ -24,7 +24,7 @@ function Search() {
             }
             try {
                 const response = await axios(config)
-                console.log(response)
+                setWeatherData(...weatherData, response.data)
                 return response.data
             } catch (error) {
                 console.log(error)
