@@ -19,7 +19,7 @@ class CityWeatherView(APIView):
 
 class SpecificCityWeatherView(APIView):
 
-    def get(self, reqest, name):
+    def get(self, request, name):
         weather_data = CityWeather.objects.filter(city_name__icontains=name)
         serialized_data = CityWeatherSerializer(weather_data, many=True)
         return JsonResponse(serialized_data.data, status=status.HTTP_200_OK, safe=False)
