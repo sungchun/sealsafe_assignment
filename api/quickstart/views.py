@@ -1,30 +1,17 @@
-from django.shortcuts import render
-from django.contrib.auth.models import Group, User
-from rest_framework import permissions, viewsets
-from .models import CityWeather
+from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django.http import JsonResponse
-
-from .serializers import GroupSerializer, UserSerializer
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+from rest_framework import status
+from .models import CityWeather
+from .serializers import CityWeatherSerializer
 
 
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all().order_by('name')
-    serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
-# Create your views here.
-
-def get_city_weather(request):
-    city_weather_data = CityWeather.objects.all().values()
-    return  JsonResponse(list(city_weather_data), safe=False)
+class CityWeatherView(APIView):
+    def get(self, request):
+        print("request")
+        city_weather_data = CityWeather.objects.all()
+        print("booba",city_weather_data)
+        serialized_data = CityWeatherSerializer(city_weather_data, many=True)
+        print("serialized",serialized_data.data)
+        return JsonResponse(serialized_data.data, status=status.HTTP_200_OK, safe=False)

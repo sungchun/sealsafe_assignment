@@ -1,4 +1,5 @@
 from django.contrib.auth.models import Group, User
+from quickstart.models import CityWeather
 from rest_framework import serializers
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -12,3 +13,8 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ['url', 'name']
 
+
+class CityWeatherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CityWeather
+        fields = '__all__'
