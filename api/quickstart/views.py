@@ -11,6 +11,7 @@ from .serializers import CityWeatherSerializer, UserSerializer
 
 
 class CityWeatherView(APIView):
+    '''returns all city weather data'''
     def get(self, request):
         city_weather_data = CityWeather.objects.all()
         serialized_data = CityWeatherSerializer(city_weather_data, many=True)
@@ -18,7 +19,7 @@ class CityWeatherView(APIView):
 
 
 class SpecificCityWeatherView(APIView):
-
+    '''returns all city weather data matching city name provided'''
     def get(self, request, name):
         weather_data = CityWeather.objects.filter(city_name__icontains=name)
         serialized_data = CityWeatherSerializer(weather_data, many=True)
@@ -26,7 +27,7 @@ class SpecificCityWeatherView(APIView):
 
 
 class RegisterView(APIView):
-
+    '''creates a new account'''
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
@@ -36,14 +37,17 @@ class RegisterView(APIView):
 
 
 class LoginView(APIView):
-
     def get_user(self, username):
+        '''
+        finds user by username, used in post method below. Returns error if no username found
+        '''
         try:
             return User.objects.get(username=username)
         except User.DoesNotExist:
             raise PermissionDenied({'message': 'Invalid credentials'})
 
     def post(self, request):
+        '''Logs in existing user'''
         username = request.data.get('username')
         password = request.data.get('password')
 

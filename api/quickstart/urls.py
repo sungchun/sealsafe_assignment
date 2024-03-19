@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import CityWeatherView, SpecificCityWeatherView, RegisterView, LoginView
-
+'''configuration of view urls for api'''
 urlpatterns = [
     path('city-weather/', CityWeatherView.as_view(), name='city-weather'),
     path('city-weather/<str:name>/', SpecificCityWeatherView.as_view(), name='specific-city-weather'),

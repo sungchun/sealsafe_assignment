@@ -5,12 +5,17 @@ from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 
+'''
+serializers automatically converting data into Python datatypes that can be rendered to JSON
+'''
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(write_only=True)
     password_confirmation = serializers.CharField(write_only=True)
 
     def validate(self, data):
-
+        '''
+        Validate the passwords match during registration
+        '''
         password = data.pop('password')
         password_confirmation = data.pop('password_confirmation')
 

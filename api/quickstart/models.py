@@ -1,6 +1,9 @@
 from django.db import models
 
 class CityWeather(models.Model):
+    '''
+        model for city weather dictates fields of information for CityWeather objects
+    '''
     city_name = models.CharField(max_length=50)
     temperature = models.DecimalField(max_digits=5, decimal_places=2)
     humidity = models.IntegerField()
