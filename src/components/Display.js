@@ -9,7 +9,7 @@ function Display({weatherData}) {
                     return (
                         <div className="weather">
                             <h1>City: {data.city_name}</h1>
-                            <p>Temp: {data.temperature}</p>
+                            <p>Temp: {data.temperature}&deg;C.</p>
                             <p>Humidity: {data.humidity}</p>
                             <p>Condition: {data.condition}</p>
                         </div>

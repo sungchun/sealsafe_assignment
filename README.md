@@ -57,8 +57,12 @@ If the database does not include this data, here is how you can populate the dat
 7. You should now be able to use the Django UI to create more instances of any table with custom data, and query them afterwards. 
 8. IMPORTANT! If you are creating new instances of CityWeather data, all city names should be in lowercase and cities with whitespace (such as 'Hong Kong' or 'San Francisco') should use an underscore('_') instead of whitespace. This is because the React app automatially changes user input when querying city weather to be lowercase and replace whitespace with underscores. 
 
+## Bugs/Improvements
+ - There is currently a bug where querying existing data in the React app with return a ```weatherData.map is not a function``` error. This can be fixed by reloading the page and making the query again.
 
+- The page is not responsive and is formatted for mobile use not desktop use.
 
+- The UI uses the city names stored in the databse rather user friendly naming conventions. To fix this I would add another field to CityWeather model for displayed city names and render that in the frontend instead. 
 
 
 
