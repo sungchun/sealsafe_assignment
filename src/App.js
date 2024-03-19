@@ -9,9 +9,9 @@ function App() {
 
   return (
     <div className="App">
+      <Login />
       <Search weatherData={weatherData} setWeatherData={setWeatherData}/>
       <Display weatherData={weatherData}/>
-      <Login />
     </div>
   );
 }

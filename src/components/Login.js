@@ -100,7 +100,7 @@ function Login() {
         }
         if(popup == "login"){
             return (
-                <form onSubmit={handleLoginSubmit} value="login">
+                <form onSubmit={handleLoginSubmit} value="login" className='form'>
                     <input name="username" type='text' onChange={handleLoginChange} placeholder='Username'/>
                     <input name="password" type='password' onChange={handleLoginChange} placeholder='Password'/>
                     <input type='submit'/>
@@ -109,13 +109,13 @@ function Login() {
         }else if(popup == "register"){
             return(
                 <div>
-                    <form onSubmit={handleRegisterSubmit} value="register">
+                    <form onSubmit={handleRegisterSubmit} value="register" className='form'>
                         <input name="username" type='text' onChange={handleRegisterChange} placeholder='Username'/>
                         <input name="password" type='password' onChange={handleRegisterChange} placeholder='Password'/>
                         <input name="password_confirmation" type='password' onChange={handleRegisterChange} placeholder='Password Confirmation'/>
                         <input type='submit'/>
+                        <button onClick={handleClose}>Close</button>
                     </form>
-                    <button onClick={handleClose}>Close</button>
                 </div>
             )
         } 
@@ -125,12 +125,12 @@ function Login() {
         <>
             {
                 loggedIn ? (
-                    <div>
+                    <div className='logged-in'>
                         <h4>{message}</h4>
                         <button onClick={handleLogout}>Logout</button>
                     </div>
                 ):(
-                    <div>
+                    <div className='login-buttons'>
                       <button onClick={openPopup} value="login">Login</button>
                       <button onClick={openPopup} value="register">Register</button>
                     </div>
