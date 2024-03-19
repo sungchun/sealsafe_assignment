@@ -23,12 +23,6 @@ function Login() {
         }
     }
     
-    function handleLogin(data){
-        const { token, id } = data
-        setToken(token)
-        setID(id)
-    }
-
     function handleLoginChange(event){
         const { name, value } = event.target
         setLoginData({
@@ -63,7 +57,7 @@ function Login() {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken
             },
-            data: JSON.stringify(loginData)
+            data: loginData
         }
         axios.request(config)
         .then((response) => {
