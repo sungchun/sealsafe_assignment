@@ -1,70 +1,120 @@
-# Getting Started with Create React App
+## Running the Project
+This is Preston Ng's Take Home test for Sealsafe.
+This project is comprised of a frontend project made with React and a backend project made with Django in one repository.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To start the backend, navigate to ```sealsafe_assignment/api``` and execute the command:
+```python manage.py runserver```. 
+This should start the backend server on port 8000.
 
-## Available Scripts
+To start the frontend navigate to ```sealsafe_assignment``` and execute the command:
+```npm start```.
+This will start the React App on server 3000.
 
-In the project directory, you can run:
 
-### `npm start`
+## Making Requests.
+If you wish to test the database outside of the app here are the requests the API supports:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+##### Get all weather data:
+URL: http://127.0.0.1:8000/api/city-weather
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##### Get weather data for one city:
+URL: http://127.0.0.1:8000/api/city-weather/[city name]
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### Register an account:
 
-### `npm run build`
+URL: http://127.0.0.1:8000/api/register
+Request body:
+```
+{
+    "username": "example_name",
+    "password": "pwd",
+    "password_confirmation": "pwd"
+}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### Login 
+URL: http://127.0.0.1:8000/api/login
+Request body:
+```
+{
+    "username": "example_username",
+    "password": "example_password"
+}
+```
+## Populating database.
+The database includes existing weather data for 2 cities, "Hong Kong" and "London". You can querty these by putting the city name in the url in the request above.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If the database does not include this data, here is how you can populate the database with your own data:
 
-### `npm run eject`
+1. Navigate to ```sealsafe_assignment/api```
+2. In the terminal, run the command: ```python manage.py createsuperuser```.
+3. Follow the instructions provided to create a user and make sure you remember the credentials you provided!.
+4. Using the instructions at the beginning of this document, start the backend server.
+5. In a web browser navigate to: ```http://127.0.0.1:8000/admin```
+6. Use the credentials you entered earlier to login. 
+7. You should now be able to use the Django UI to create more instances of any table with custom data, and query them afterwards. 
+8. IMPORTANT! If you are creating new instances of CityWeather data, all city names should be in lowercase and cities with whitespace (such as 'Hong Kong' or 'San Francisco') should use an underscore('_') instead of whitespace. This is because the React app automatially changes user input when querying city weather to be lowercase and replace whitespace with underscores. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
