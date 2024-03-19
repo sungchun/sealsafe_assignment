@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import {setID, setToken} from  '../helpers/auth'
+import { computeHeadingLevel } from '@testing-library/react';
 
 
 function Login() {
@@ -44,21 +44,30 @@ function Login() {
             [name]: value
         })
     }
-
+    
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    };
+    
+    
     async function handleLoginSubmit(event){
         event.preventDefault()
+        const csrfToken = getCookie('csrftoken');
         console.log(loginData)
         const config = {
             method: "post",
             url: "http://127.0.0.1:8000/api/login",
             header: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
             },
             data: JSON.stringify(loginData)
         }
         axios.request(config)
         .then((response) => {
-          handleLogin(JSON.stringify(response.data))
+            console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
