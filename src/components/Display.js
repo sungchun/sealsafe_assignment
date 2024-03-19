@@ -1,14 +1,17 @@
 function Display({weatherData}) {
     return (
-        <div>
+        /*displays list of weather data elements for each instance of
+        weather data found in api, if none return nothing. 
+        */
+        <div className="display">
             {
                 weatherData ? (weatherData.map((data) => {
                     return (
-                        <div>
-                            <h1>{data.city_name}</h1>
-                            <p>{data.temperature}</p>
-                            <p>{data.humidity}</p>
-                            <p>{data.condition}</p>
+                        <div className="weather">
+                            <h1>City: {data.city_name}</h1>
+                            <p>Temp: {data.temperature}</p>
+                            <p>Humidity: {data.humidity}</p>
+                            <p>Condition: {data.condition}</p>
                         </div>
                     );
                 })):(
